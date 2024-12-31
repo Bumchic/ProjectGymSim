@@ -19,4 +19,10 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="SelectDifficulty\Window1.axaml.cs">
+        <DependentUpon>Window1.axaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>
