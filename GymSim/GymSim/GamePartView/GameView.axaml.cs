@@ -13,7 +13,7 @@ using Avalonia.Media.Imaging;
 using System.Drawing.Imaging;
 
 
-namespace ProjectGymSim.GamePartView;
+namespace GymSim.GamePartView;
 
 public partial class GameView : Window
 {

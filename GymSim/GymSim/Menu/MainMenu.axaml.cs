@@ -4,7 +4,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
-namespace ProjectGymSim.Menu;
+namespace GymSim.Menu;
 
 public partial class MainMenu : Window
 {
@@ -14,8 +14,8 @@ public partial class MainMenu : Window
     }
     private async void OnKeyDown(object? sender, KeyEventArgs e)
     {
-        var gameWindow = new GameWindow();
-        await gameWindow.ShowDialog(this);
+        var selectWindow = new SelectDifficulty.Window1();
+        await selectWindow.ShowDialog(this);
         this.Close();
     }
     

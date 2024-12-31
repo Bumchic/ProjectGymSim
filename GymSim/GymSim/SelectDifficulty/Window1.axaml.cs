@@ -2,9 +2,8 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using ProjectGymSim.GamePartView;
-
-namespace ProjectGymSim.SelectDifficulty;
+using GymSim.GamePartView;
+namespace GymSim.SelectDifficulty;
 
 public partial class Window1 : Window
 {
@@ -35,7 +34,7 @@ public partial class Window1 : Window
 
     private void OpenGameView(int delay)
     {
-        GameView.DelayTime = delay; 
+        
         var gameView = new GameView();
         gameView.Show();
     }
