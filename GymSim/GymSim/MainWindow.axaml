@@ -6,4 +6,7 @@
         x:Class="GymSim.MainWindow"
         Title="GymSim">
     Welcome to Avalonia!
+    <TextBlock>
+        
+    </TextBlock>
 </Window>
