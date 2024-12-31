@@ -1,0 +1,39 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ProjectGymSim.Menu.MainMenu"
+        Title="MainMenu"
+        KeyDown="OnKeyDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> 
+            <RowDefinition Height="*"/>    
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Background="LightGray">
+            <MenuItem Header="File" Foreground="Black" >
+                <MenuItem Header="New"/> <!--Click="OnNewClick"/>-->
+                <MenuItem Header="Exit" Click="OnExitClick"/>
+            </MenuItem>
+            <MenuItem Header="Option" Foreground="Black">
+              <MenuItem Header="Resolution" Foreground="Black">
+                  <MenuItem Header="Full Screen" Click="OnFullScreenClick"/>
+                  <MenuItem Header="800x600" Click="OnResize800x600Click"/>
+                  <MenuItem Header="1024x768" Click="OnResize1024x768Click"/>
+              </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="10">
+            <TextBlock Text="Welcome to Gym Sim!" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Press any key to continue" 
+                       FontSize="20" 
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>
