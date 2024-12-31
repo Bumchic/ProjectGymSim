@@ -20,23 +20,21 @@ public partial class Window1 : Window
 
     private void EasyButton_Click(object? sender, RoutedEventArgs e)
     {
-        OpenGameView(1000);
+        OpenGameView(1);
     }
 
     private void NormalButton_Click(object? sender, RoutedEventArgs e)
     {
-        OpenGameView(500);
+        OpenGameView(2);
     }
 
     private void HardButton_Click(object? sender, RoutedEventArgs e)
     {
-        OpenGameView(200);
+        OpenGameView(3);
     }
-
-    private void OpenGameView(int delay)
+    private void OpenGameView(int difficulty)
     {
-        GameView.DelayTime = delay; 
-        var gameView = new GameView();
+        var gameView = new GameView(difficulty);
         gameView.Show();
     }
 }
