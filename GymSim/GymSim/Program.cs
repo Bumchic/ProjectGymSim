@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Avalonia;
+using System;
 
-using Avalonia;
-using Avalonia.ReactiveUI;
-
-namespace ProjectGymSimWindow.Desktop;
+namespace GymSim;
 
 class Program
 {
@@ -19,6 +17,5 @@ class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
-            .LogToTrace()
-            .UseReactiveUI();
+            .LogToTrace();
 }

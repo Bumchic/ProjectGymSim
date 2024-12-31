@@ -1,6 +1,6 @@
-﻿using Avalonia.Controls;
+using Avalonia.Controls;
 
-namespace ProjectGymSimWindow.Views;
+namespace GymSim;
 
 public partial class MainWindow : Window
 {
