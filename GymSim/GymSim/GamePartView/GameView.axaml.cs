@@ -129,6 +129,7 @@ public partial class GameView : Window
             Time = repResetTime;
             this.RepCounter.Text = $"Rep:{RepCount}";
             liftReset = true;
+            Weight -= 150;
         }
         if (liftStarted == false)
         {
