@@ -11,7 +11,7 @@
         <TextBlock Name="RepCounter" TextWrapping="Wrap" FontSize="50">
             Rep:0
         </TextBlock>
-        
+        <Image Source=""/>
         
     </Panel>
 

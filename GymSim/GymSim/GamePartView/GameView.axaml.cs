@@ -66,7 +66,7 @@ public partial class GameView : Window
         liftStarted = false;
             for (int i = 0; i < 16; i++)
             {
-                using Stream stream = File.Open($"C:\\Users\\Bumchic\\Documents\\GitHub\\ProjectGymSim\\GymSim\\GymSim\\res\\Frame{i}.jpg", FileMode.Open);
+                using Stream stream = File.Open($"avares://MyFrame{i}", FileMode.Open);
                 Image img = new Image()
                 {
                     Source = new Bitmap(stream),

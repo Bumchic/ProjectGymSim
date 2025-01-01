@@ -25,5 +25,7 @@
         <DependentUpon>Window1.axaml</DependentUpon>
       </Compile>
     </ItemGroup>
-
+<ItemGroup>
+    <AvaloniaResource Include="res\\**"/>
+</ItemGroup>
 </Project>
