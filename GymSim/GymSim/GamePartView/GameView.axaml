@@ -5,11 +5,13 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ProjectGymSim.GamePartView.GameView"
         Title="GameView" KeyDown="SpaceButton_OnKeyDown"
-        >
+        Background="Aqua">
 
     <Panel Name="ThisPanel">
+        <TextBlock Name="RepCounter" TextWrapping="Wrap" FontSize="50">
+            Rep:0
+        </TextBlock>
         
-        <TextBlock Name="TextBlock" Background="Aqua"></TextBlock>
         
     </Panel>
 

@@ -8,7 +8,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        GameView gameView = new GameView(1);
+        GameView gameView = new GameView(3);
         gameView.Show();
     }
 }

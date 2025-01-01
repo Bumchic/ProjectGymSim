@@ -11,6 +11,7 @@ using System.IO;
 using System.Net;
 using Avalonia.Media.Imaging;
 using System.Drawing.Imaging;
+using Avalonia.Remote.Protocol;
 using Avalonia.Threading;
 
 
@@ -29,9 +30,9 @@ public partial class GameView : Window
             {
                 return LowerLim;
             }
-            else if (progress > UpperLim)
+            else if (progress > UpperLim-1)
             {
-                return UpperLim;
+                return UpperLim-1;
             }else
                 return progress;
         }
@@ -43,7 +44,14 @@ public partial class GameView : Window
     public int Difficulty{get;set;}
     List<Image> GameFrame = new List<Image>();
     private Dispatcher dispatcher;
-    public event void GameStarted;
+    private event Action LiftStarted;
+    private bool liftStarted;
+    private bool liftReset = false;
+    private const int repResetTime = 100;
+    private int Weight;
+    private int Time;
+    private int RepCount = 0;
+    
     public GameView()
     {
         InitializeComponent();
@@ -54,6 +62,8 @@ public partial class GameView : Window
         dispatcher = Dispatcher.UIThread;
         this.Difficulty = difficulty;
         Progress = LowerLim;
+        LiftStarted += OnLiftStarted;
+        liftStarted = false;
             for (int i = 0; i < 16; i++)
             {
                 using Stream stream = File.Open($"C:\\Users\\Bumchic\\Documents\\GitHub\\ProjectGymSim\\GymSim\\GymSim\\res\\Frame{i}.jpg", FileMode.Open);
@@ -66,16 +76,24 @@ public partial class GameView : Window
                 this.ThisPanel.Children.Add(img);
             }
             GameFrame[Progress].IsVisible = true;
+            switch (Difficulty)
+            {
+                case 1: Weight = 3000;
+                    break;
+                case 2: Weight = 2500;
+                    break;
+                case 3: Weight = 2000;
+                    break;
+                default: Weight = 3000;
+                    break;
+            }
     }
 
     public async Task StartGame()
     {
+        liftStarted = true;
         await Task.Run(() =>
         {
-            dispatcher.Invoke(() =>
-            {
-                GameFrame[Progress].IsVisible = true;
-            });
             while (Progress > LowerLim)
             {
                 Progress--;
@@ -84,26 +102,37 @@ public partial class GameView : Window
                     GameFrame[Progress + 1].IsVisible = false;
                     GameFrame[Progress].IsVisible = true;
                 });
-                Task.Delay(300).Wait();
+                Task.Delay(Time).Wait();
             }
-             Console.WriteLine("Game started");
+            liftStarted = false;
+            liftReset = false;
+            Time = Weight;
         });
     }
 
-
+    public void OnLiftStarted()
+    {
+        StartGame();
+    }
     public void SpaceButton_OnKeyDown(object? sender, KeyEventArgs e)
     {
-        Task GameState = StartGame();
-        if (e.Key != Key.Space)
+        if (e.Key != Key.Space || liftReset)
         {
             return;
         }
         Progress += 1;
         GameFrame[Progress - 1].IsVisible = false;
         GameFrame[Progress].IsVisible = true;
-        if (GameState.Status != TaskStatus.Created)
+        if (Progress == UpperLim - 1)
         {
-            GameState.Start();
+            RepCount++;
+            Time = repResetTime;
+            this.RepCounter.Text = $"Rep:{RepCount}";
+            liftReset = true;
+        }
+        if (liftStarted == false)
+        {
+            LiftStarted?.Invoke();
         }
     }
 }
