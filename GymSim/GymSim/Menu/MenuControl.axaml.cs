@@ -1,14 +1,13 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-
 namespace GymSim.Menu;
 
-public partial class MainMenu : Window
+public partial class MenuControl : Window
 {
-    public MainMenu()
+    public MenuControl()
     {
         InitializeComponent();
     }
@@ -41,4 +40,19 @@ public partial class MainMenu : Window
         this.Width = 1024;
         this.Height = 768;
     }
+
+    public void OnIconClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        if (MainMenu.IsVisible)
+        {
+            MainMenu.IsVisible = false;
+            /*((Button)sender!).IsVisible = true;*/
+        }
+        else
+        { 
+            MainMenu.IsVisible = true;
+            ((Button)sender!).IsVisible = false;
+        }
+    }
+    
 }

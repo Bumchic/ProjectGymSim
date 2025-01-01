@@ -1,30 +1,37 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="GymSim.Menu.MainMenu"
+        x:Class="GymSim.Menu.MenuControl"
         Title="MainMenu"
         KeyDown="OnKeyDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/> 
-            <RowDefinition Height="*"/>    
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Background="LightGray">
-            <MenuItem Header="File" Foreground="Black" >
+        <!-- Menu -->
+        <Menu x:Name="MainMenu" Grid.Row="0" Background="MediumVioletRed" FontWeight="Bold" IsVisible="False">
+            <MenuItem Header="File" Foreground="Black">
                 <MenuItem Header="New"/> <!--Click="OnNewClick"/>-->
                 <MenuItem Header="Exit" Click="OnExitClick"/>
             </MenuItem>
             <MenuItem Header="Option" Foreground="Black">
-              <MenuItem Header="Resolution" Foreground="Black">
+              <MenuItem Header="Resolution" Foreground="MediumVioletRed">
                   <MenuItem Header="Full Screen" Click="OnFullScreenClick"/>
                   <MenuItem Header="800x600" Click="OnResize800x600Click"/>
                   <MenuItem Header="1024x768" Click="OnResize1024x768Click"/>
               </MenuItem>
             </MenuItem>
         </Menu>
+        <!--Icon menu-->
+        <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"
+                Click="OnIconClick" Background="Transparent" BorderBrush="Transparent">
+            <Path Data="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" 
+                  Fill="Gray" Width="24" Height="24"/>
+        </Button>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="10">
             <TextBlock Text="Welcome to Gym Sim!" 
