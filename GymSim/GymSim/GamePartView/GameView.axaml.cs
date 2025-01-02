@@ -11,9 +11,11 @@ using System.IO;
 using System.Net;
 using Avalonia.Media.Imaging;
 using System.Drawing.Imaging;
+using System.Reflection;
+using Avalonia.Platform;
 using Avalonia.Remote.Protocol;
 using Avalonia.Threading;
-using ProjectGymSim.SelectDifficulty;
+
 
 namespace ProjectGymSim.GamePartView;
 
@@ -48,13 +50,55 @@ public partial class GameView : Window
     private bool liftStarted;
     private bool liftReset = false;
     private const int repResetTime = 100;
-    private int Weight;
+    private int weight;
+    public int Weight
+    {
+        get
+        {
+            if (weight < 0)
+            {
+                return 0;
+            }
+            return weight;
+        }
+        set
+        {
+            if (weight < 0)
+            {
+                weight = 0;
+            }
+            weight = value;
+        }
+    }
     private int Time;
     private int RepCount = 0;
-    
+    private int strength;
+    private string assembly;
+    public int Strength
+    {
+        get
+        {
+            return strength;
+        }
+        set
+        {
+            if (strength > 100)
+            {
+                strength = 100;
+            }
+            else
+            {
+                strength = value;
+            }
+            
+        }
+    }
+
+    private int PushStrength;
     public GameView()
     {
         InitializeComponent();
+        Icon = new WindowIcon("res/app.ico");
     }
 
     public GameView(int difficulty) : this()
@@ -64,9 +108,11 @@ public partial class GameView : Window
         Progress = LowerLim;
         LiftStarted += OnLiftStarted;
         liftStarted = false;
+        Strength = 100;
+        assembly = Assembly.GetExecutingAssembly().GetName().Name;
             for (int i = 0; i < 16; i++)
             {
-                using Stream stream = File.Open($"C:\\Users\\hoang\\Desktop\\ProjectGymSim\\GymSim\\GymSim\\res\\Frame{i}.jpg", FileMode.Open);
+                using Stream stream = AssetLoader.Open(new Uri($"avares://{assembly}/res/Frame{i}.jpg"));
                 Image img = new Image()
                 {
                     Source = new Bitmap(stream),
@@ -87,8 +133,24 @@ public partial class GameView : Window
                 default: Weight = 3000;
                     break;
             }
+            RegainStrength();
     }
 
+    public async Task RegainStrength()
+    {
+        await Task.Run(() =>
+        {
+            while (true)
+            {
+                Task.Delay(100).Wait();
+                Strength += 2;
+                dispatcher.Invoke(() =>
+                {
+                    this.StrengthCounter.Text = $"Strength:{Strength}";
+                });
+            }
+        });
+    }
     public async Task StartGame()
     {
         liftStarted = true;
@@ -96,13 +158,18 @@ public partial class GameView : Window
         {
             while (Progress > LowerLim)
             {
+                if (!liftReset)
+                {
+                    PushStrength = Math.Clamp(Time - Math.Abs(Strength), 0, Weight);
+                }
                 Progress--;
                 dispatcher.Invoke(() =>
                 {
                     GameFrame[Progress + 1].IsVisible = false;
                     GameFrame[Progress].IsVisible = true;
                 });
-                Task.Delay(Time).Wait();
+                Console.WriteLine(PushStrength);
+                Task.Delay(PushStrength).Wait();
             }
             liftStarted = false;
             liftReset = false;
@@ -110,26 +177,31 @@ public partial class GameView : Window
         });
     }
 
-    public void OnLiftStarted()
+    public async void OnLiftStarted()
     {
-        StartGame();
+        await StartGame();
     }
     public void SpaceButton_OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (e.Key != Key.Space || liftReset)
+        if (liftReset)
         {
             return;
         }
         Progress += 1;
+        Strength -= 10;
+        if (strength < -weight)
+        {
+            strength = -weight;
+        }
         GameFrame[Progress - 1].IsVisible = false;
         GameFrame[Progress].IsVisible = true;
         if (Progress == UpperLim - 1)
         {
             RepCount++;
-            Time = repResetTime;
+            Time = 0;
+            PushStrength = 20;
             this.RepCounter.Text = $"Rep:{RepCount}";
             liftReset = true;
-            Weight -= 150;
         }
         if (liftStarted == false)
         {

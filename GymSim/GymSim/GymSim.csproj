@@ -27,5 +27,10 @@
     </ItemGroup>
 <ItemGroup>
     <AvaloniaResource Include="res\\**"/>
+    <Folder Include="res\" />
+    <None
+            Update="res/app.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
 </ItemGroup>
 </Project>
