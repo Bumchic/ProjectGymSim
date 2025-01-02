@@ -19,11 +19,13 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
     </ItemGroup>
+
     <ItemGroup>
-        <Folder Include="res\" />
-        <None
-                Update="res/app.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
+      <Compile Update="SelectDifficulty\Window1.axaml.cs">
+        <DependentUpon>Window1.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
+<ItemGroup>
+    <AvaloniaResource Include="res\\**"/>
+</ItemGroup>
 </Project>
