@@ -11,7 +11,7 @@ public partial class Window1 : Window
     public Window1()
     {
         InitializeComponent();
-
+        Icon = new WindowIcon("res/app.ico");
         // Gán sự kiện Click cho các nút
         EasyButton.Click += EasyButton_Click;
         NormalButton.Click += NormalButton_Click;

@@ -1,9 +1,9 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="ProjectGymSim.Menu.MainMenu"
+        x:Class="ProjectGymSim.Menu.MenuControl"
         Title="MainMenu"
         KeyDown="OnKeyDown">
     <Grid>
@@ -18,11 +18,11 @@
                 <MenuItem Header="Exit" Click="OnExitClick"/>
             </MenuItem>
             <MenuItem Header="Option" Foreground="Black">
-              <MenuItem Header="Resolution" Foreground="Black">
-                  <MenuItem Header="Full Screen" Click="OnFullScreenClick"/>
-                  <MenuItem Header="800x600" Click="OnResize800x600Click"/>
-                  <MenuItem Header="1024x768" Click="OnResize1024x768Click"/>
-              </MenuItem>
+                <MenuItem Header="Resolution" Foreground="Black">
+                    <MenuItem Header="Full Screen" Click="OnFullScreenClick"/>
+                    <MenuItem Header="800x600" Click="OnResize800x600Click"/>
+                    <MenuItem Header="1024x768" Click="OnResize1024x768Click"/>
+                </MenuItem>
             </MenuItem>
         </Menu>
 

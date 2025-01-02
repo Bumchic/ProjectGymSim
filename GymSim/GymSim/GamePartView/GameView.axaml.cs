@@ -98,6 +98,7 @@ public partial class GameView : Window
     public GameView()
     {
         InitializeComponent();
+        Icon = new WindowIcon("res/app.ico");
     }
 
     public GameView(int difficulty) : this()
@@ -186,8 +187,6 @@ public partial class GameView : Window
         {
             return;
         }
-
-        
         Progress += 1;
         Strength -= 10;
         if (strength < -weight)
