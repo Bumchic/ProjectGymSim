@@ -12,6 +12,7 @@ using System.Net;
 using Avalonia.Media.Imaging;
 using System.Drawing.Imaging;
 using System.Reflection;
+using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Remote.Protocol;
 using Avalonia.Threading;
@@ -51,6 +52,7 @@ public partial class GameView : Window
     private bool liftReset = false;
     private const int repResetTime = 100;
     private int weight;
+    private bool GameOver;
     public int Weight
     {
         get
@@ -73,7 +75,6 @@ public partial class GameView : Window
     private int Time;
     private int RepCount = 0;
     private int strength;
-    private string assembly;
     public int Strength
     {
         get
@@ -95,6 +96,7 @@ public partial class GameView : Window
     }
 
     private int PushStrength;
+    private bool PushOver50;
     public GameView()
     {
         InitializeComponent();
@@ -109,7 +111,9 @@ public partial class GameView : Window
         LiftStarted += OnLiftStarted;
         liftStarted = false;
         Strength = 100;
-        assembly = Assembly.GetExecutingAssembly().GetName().Name;
+        GameOver = false;
+        PushOver50 = false;
+        string? assembly = Assembly.GetExecutingAssembly().GetName().Name;
             for (int i = 0; i < 16; i++)
             {
                 using Stream stream = AssetLoader.Open(new Uri($"avares://{assembly}/res/Frame{i}.jpg"));
@@ -171,9 +175,20 @@ public partial class GameView : Window
                 Console.WriteLine(PushStrength);
                 Task.Delay(PushStrength).Wait();
             }
+
+            if (!liftReset && PushOver50)
+            {
+                GameOver = true;
+                dispatcher.Invoke(() =>
+                {
+                    this.GameOverScreen.IsVisible = true;
+                });
+
+            }
             liftStarted = false;
             liftReset = false;
             Time = Weight;
+            PushOver50 = false;
         });
     }
 
@@ -183,7 +198,7 @@ public partial class GameView : Window
     }
     public void SpaceButton_OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (liftReset)
+        if (liftReset || GameOver)
         {
             return;
         }
@@ -195,6 +210,10 @@ public partial class GameView : Window
         }
         GameFrame[Progress - 1].IsVisible = false;
         GameFrame[Progress].IsVisible = true;
+        if (Progress >= UpperLim / 2)
+        {
+            PushOver50 = true;
+        }
         if (Progress == UpperLim - 1)
         {
             RepCount++;
