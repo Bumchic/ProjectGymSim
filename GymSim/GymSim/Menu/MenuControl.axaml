@@ -16,7 +16,6 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Background="LightGray">
             <MenuItem Header="File" Foreground="Black" >
-                <MenuItem Header="New"/> <!--Click="OnNewClick"/>-->
                 <MenuItem Header="Exit" Click="OnExitClick"/>
             </MenuItem>
             <MenuItem Header="Option" Foreground="Black">
