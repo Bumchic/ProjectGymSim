@@ -3,15 +3,21 @@
         x:Class="ProjectGymSim.SelectDifficulty.Window1"
         Title="Select Difficulty" Width="400" Height="400">
     <Window.Background>
-        <ImageBrush Source="avares://GymSim/res/MenuGym.jpg" Stretch="UniformToFill" />
+        <ImageBrush Source="avares://GymSim/res/blackngreen.jpg" Stretch="UniformToFill" />
     </Window.Background>
-    <Grid>
+    <Grid Background="#121212">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-            <TextBlock Text="Game Mode" FontWeight="Bold" FontSize="32" Foreground="White"
+            <TextBlock Text="Game Mode" FontWeight="Bold" FontSize="32" Foreground="#1DB954"
                        HorizontalAlignment="Center"/>
-            <Button Name="EasyButton" Width="200" Height="60" FontSize="20" Content="Easy"/>
-            <Button Name="NormalButton" Width="200" Height="60" FontSize="20" Content="Normal"/>
-            <Button Name="HardButton" Width="200" Height="60" FontSize="20" Content="Hard"/>
+            <Button Name="EasyButton" Width="200" Height="60" FontSize="20" Content="Easy"
+                    Background="#1DB954" Foreground="White" FontWeight="Bold" CornerRadius="30" 
+                    BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button Name="NormalButton" Width="200" Height="60" FontSize="20" Content="Normal"
+                    Background="#1DB954" Foreground="White" FontWeight="Bold" CornerRadius="30" 
+                    BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button Name="HardButton" Width="200" Height="60" FontSize="20" Content="Hard"
+                    Background="#1DB954" Foreground="White" FontWeight="Bold" CornerRadius="30" 
+                    BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Window>
