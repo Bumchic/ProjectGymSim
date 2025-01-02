@@ -198,7 +198,7 @@ public partial class GameView : Window
     }
     public void SpaceButton_OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (liftReset || GameOver)
+        if (e.Key != Key.Space||liftReset || GameOver)
         {
             return;
         }
