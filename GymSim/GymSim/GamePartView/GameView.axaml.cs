@@ -16,6 +16,7 @@ using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Remote.Protocol;
 using Avalonia.Threading;
+using Microsoft.VisualBasic;
 
 
 namespace ProjectGymSim.GamePartView;
@@ -103,7 +104,7 @@ public partial class GameView : Window
         Icon = new WindowIcon("res/app.ico");
     }
 
-    public GameView(int difficulty) : this()
+    public GameView(int difficulty, double Width, double Height, WindowState windowState) : this()
     {
         dispatcher = Dispatcher.UIThread;
         this.Difficulty = difficulty;
@@ -113,33 +114,43 @@ public partial class GameView : Window
         Strength = 100;
         GameOver = false;
         PushOver50 = false;
-        string? assembly = Assembly.GetExecutingAssembly().GetName().Name;
-            for (int i = 0; i < 16; i++)
-            {
-                using Stream stream = AssetLoader.Open(new Uri($"avares://{assembly}/res/Frame{i}.jpg"));
-                Image img = new Image()
-                {
-                    Source = new Bitmap(stream),
-                    IsVisible = false
-                };
-                GameFrame.Add(img);
-                this.ThisPanel.Children.Add(img);
-            }
-            GameFrame[Progress].IsVisible = true;
-            switch (Difficulty)
-            {
-                case 1: Weight = 3000;
-                    break;
-                case 2: Weight = 2500;
-                    break;
-                case 3: Weight = 2000;
-                    break;
-                default: Weight = 3000;
-                    break;
-            }
-            RegainStrength();
+        this.Width = Width;
+        this.Height = Height;
+        this.WindowState = windowState;
+        SetupImage();
+        GameFrame[Progress].IsVisible = true;
+        SetWeight(Difficulty);
+        RegainStrength();
     }
-
+    public void SetupImage()
+    {
+        string? assembly = Assembly.GetExecutingAssembly().GetName().Name;
+        for (int i = 0; i < 16; i++)
+        {
+            using Stream stream = AssetLoader.Open(new Uri($"avares://{assembly}/res/Frame{i}.jpg"));
+            Image img = new Image()
+            {
+                Source = new Bitmap(stream),
+                IsVisible = false
+            };
+            GameFrame.Add(img);
+            this.ThisPanel.Children.Add(img);
+        }
+    }
+    public void SetWeight(int Difficulty)
+    {
+        switch (Difficulty)
+        {
+            case 1: Weight = 3000;
+                break;
+            case 2: Weight = 2500;
+                break;
+            case 3: Weight = 2000;
+                break;
+            default: Weight = 3000;
+                break;
+        }
+    }
     public async Task RegainStrength()
     {
         await Task.Run(() =>
@@ -183,7 +194,7 @@ public partial class GameView : Window
                 {
                     this.GameOverScreen.IsVisible = true;
                 });
-
+                SaveGame();
             }
             liftStarted = false;
             liftReset = false;
@@ -192,13 +203,17 @@ public partial class GameView : Window
         });
     }
 
+    public void SaveGame()
+    {
+        
+    }
     public async void OnLiftStarted()
     {
         await StartGame();
     }
     public void SpaceButton_OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (e.Key != Key.Space||liftReset || GameOver)
+        if (e.Key != Key.Space || liftReset || GameOver)
         {
             return;
         }
@@ -226,5 +241,12 @@ public partial class GameView : Window
         {
             LiftStarted?.Invoke();
         }
+    }
+
+    public void RetryButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        GameView gameView = new GameView(this.Difficulty, this.Width, this.Height, this.WindowState);
+        gameView.Show();
+        this.Close();
     }
 }
