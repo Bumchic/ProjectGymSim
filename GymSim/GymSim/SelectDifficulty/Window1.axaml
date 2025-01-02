@@ -7,11 +7,11 @@
         Title="Select Difficulty" Width="200" Height="200">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Spacing="10">
-            <TextBlock Text="Options" FontWeight="Bold" FontSize="16" Foreground="White"
+            <TextBlock Text="Game Mode" FontWeight="Bold" FontSize="16" Foreground="White"
                        HorizontalAlignment="Center"/>
-            <Button Name="EasyButton" Margin="5" HorizontalAlignment="Stretch" Content="Easy"/>
-            <Button Name="NormalButton" Margin="5" HorizontalAlignment="Stretch" Content="Normal"/>
-            <Button Name="HardButton" Margin="5" HorizontalAlignment="Stretch" Content="Hard"/>
+            <Button Name="EasyButton" Margin="5" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Easy"/>
+            <Button Name="NormalButton" Margin="5" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Normal"/>
+            <Button Name="HardButton" Margin="5" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Hard"/>
         </StackPanel>
     </Grid>
 </Window>
