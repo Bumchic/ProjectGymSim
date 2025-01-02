@@ -5,18 +5,21 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ProjectGymSim.Menu.MenuControl"
         Title="MainMenu"
+        
         KeyDown="OnKeyDown">
+    
     <Window.Background>
-        <ImageBrush Source="avares://GymSim/res/darkgreen.jpg" Stretch="UniformToFill" />
+        <ImageBrush Source="avares://GymSim/res/darkgreen.jpg" Stretch="UniformToFill"/>
     </Window.Background>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/> 
             <RowDefinition Height="*"/>    
         </Grid.RowDefinitions>
+        
         <Menu Grid.Row="0" Background="LightGray">
             <MenuItem Header="File" Foreground="Black" >
-                <MenuItem Header="New"/> <!--Click="OnNewClick"/>-->
                 <MenuItem Header="Exit" Click="OnExitClick"/>
             </MenuItem>
             <MenuItem Header="Option" Foreground="Black">
@@ -29,12 +32,14 @@
         </Menu>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="10">
-            <TextBlock Text="Welcome to Gym Sim!" 
-                       FontSize="24" 
+            <TextBlock Text="Welcome to Gym Sim!"
+                       Foreground="Black"
+                       FontSize="42" 
                        FontWeight="Bold" 
                        HorizontalAlignment="Center"/>
             <TextBlock Text="Press any key to continue" 
-                       FontSize="20" 
+                       Foreground="Black"
+                       FontSize="24" 
                        HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
