@@ -13,7 +13,7 @@ using Avalonia.Media.Imaging;
 using System.Drawing.Imaging;
 using Avalonia.Remote.Protocol;
 using Avalonia.Threading;
-
+using ProjectGymSim.SelectDifficulty;
 
 namespace ProjectGymSim.GamePartView;
 
@@ -66,7 +66,7 @@ public partial class GameView : Window
         liftStarted = false;
             for (int i = 0; i < 16; i++)
             {
-                using Stream stream = File.Open($"avares://MyFrame{i}", FileMode.Open);
+                using Stream stream = File.Open($"C:\\Users\\hoang\\Desktop\\ProjectGymSim\\GymSim\\GymSim\\res\\Frame{i}.jpg", FileMode.Open);
                 Image img = new Image()
                 {
                     Source = new Bitmap(stream),
