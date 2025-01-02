@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ProjectGymSim.GamePartView.GameView"
         Title="GameView" KeyDown="SpaceButton_OnKeyDown"
-        Background="Aqua">
+        Background="Black">
         <Panel>
                 <Panel Name="ThisPanel">
                         <StackPanel>
@@ -16,7 +16,7 @@
                                         Strength:100
                                 </TextBlock>
                         </StackPanel>
-                        
+                        <Label HorizontalAlignment="Right" VerticalAlignment="Bottom">Press SpaceBar To Push</Label>
                 </Panel>  
                 <TextBlock Name="GameOverScreen" HorizontalAlignment="Center" VerticalAlignment="Center"
                            TextAlignment="Center" FontSize="150" Width="10000" Height="200" Foreground="Red"
