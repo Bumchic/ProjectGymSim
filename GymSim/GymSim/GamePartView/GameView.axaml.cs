@@ -11,6 +11,8 @@ using System.IO;
 using System.Net;
 using Avalonia.Media.Imaging;
 using System.Drawing.Imaging;
+using System.Reflection;
+using Avalonia.Platform;
 using Avalonia.Remote.Protocol;
 using Avalonia.Threading;
 
@@ -71,6 +73,7 @@ public partial class GameView : Window
     private int Time;
     private int RepCount = 0;
     private int strength;
+    private string assembly;
     public int Strength
     {
         get
@@ -105,9 +108,10 @@ public partial class GameView : Window
         LiftStarted += OnLiftStarted;
         liftStarted = false;
         Strength = 100;
+        assembly = Assembly.GetExecutingAssembly().GetName().Name;
             for (int i = 0; i < 16; i++)
             {
-                using Stream stream = File.Open($"C:\\Users\\Bumchic\\Documents\\GitHub\\ProjectGymSim\\GymSim\\GymSim\\res\\Frame{i}.jpg", FileMode.Open);
+                using Stream stream = AssetLoader.Open(new Uri($"avares://{assembly}/res/Frame{i}.jpg"));
                 Image img = new Image()
                 {
                     Source = new Bitmap(stream),
