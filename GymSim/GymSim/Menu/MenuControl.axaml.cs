@@ -10,6 +10,7 @@ public partial class MenuControl : Window
     public MenuControl()
     {
         InitializeComponent();
+        this.Icon = new WindowIcon("res/app.ico");
     }
     private async void OnKeyDown(object? sender, KeyEventArgs e)
     {
