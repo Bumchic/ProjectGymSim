@@ -34,7 +34,7 @@ public partial class Window1 : Window
     }
     private void OpenGameView(int difficulty)
     {
-        var gameView = new GameView(difficulty);
+        var gameView = new GameView(difficulty, this.Width, this.Height, this.WindowState);
         gameView.Show();
     }
 }
