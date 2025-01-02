@@ -8,13 +8,13 @@
         Background="Aqua">
 
     <Panel Name="ThisPanel">
-        <TextBlock Name="RepCounter" TextWrapping="Wrap" FontSize="50">
-            Rep:0
-        </TextBlock>
-        <Image Source=""/>
-        
+        <StackPanel>
+            <TextBlock Name="RepCounter" TextWrapping="Wrap" FontSize="50">
+                Rep:0
+            </TextBlock>
+            <TextBlock Name="StrengthCounter" TextWrapping="Wrap" FontSize="50">
+                Strength:100
+            </TextBlock>
+        </StackPanel>
     </Panel>
-
-
-
 </Window>
