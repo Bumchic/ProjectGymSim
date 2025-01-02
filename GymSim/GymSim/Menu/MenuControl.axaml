@@ -13,8 +13,8 @@
         </Grid.RowDefinitions>
 
         <!-- Menu -->
-        <Menu x:Name="MainMenu" Grid.Row="0" Background="MediumVioletRed" FontWeight="Bold" IsVisible="False">
-            <MenuItem Header="File" Foreground="Black">
+        <Menu x:Name="MainMenu" Grid.Row="0" Background="SkyBlue" FontWeight="Bold" IsVisible="False" PointerPressed="OnMenuClick">
+            <MenuItem Header="File" Foreground="Black" PointerEntered="OnFilePointerEnter">
                 <MenuItem Header="New"/> <!--Click="OnNewClick"/>-->
                 <MenuItem Header="Exit" Click="OnExitClick"/>
             </MenuItem>
@@ -27,7 +27,7 @@
             </MenuItem>
         </Menu>
         <!--Icon menu-->
-        <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"
+        <Button x:Name="IconButton" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"
                 Click="OnIconClick" Background="Transparent" BorderBrush="Transparent">
             <Path Data="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" 
                   Fill="Gray" Width="24" Height="24"/>

@@ -54,5 +54,24 @@ public partial class MenuControl : Window
             ((Button)sender!).IsVisible = false;
         }
     }
+    private void OnMenuClick(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        // Hide the menu and show the icon
+        MainMenu.IsVisible = false;
+
+        // Find the button (icon) and make it visible again
+        var iconButton = this.FindControl<Button>("IconButton");
+        if (iconButton != null)
+        {
+            iconButton.IsVisible = true;
+        }
+    }
+    private void OnFilePointerEnter(object? sender, PointerEventArgs e)
+    {
+        if (sender is MenuItem menuItem)
+        {
+            menuItem.IsSubMenuOpen = true; // Buộc hiển thị menu con
+        }
+    }
     
 }
