@@ -16,13 +16,21 @@
                                         Strength:100
                                 </TextBlock>
                         </StackPanel>
-                        <Label HorizontalAlignment="Right" VerticalAlignment="Bottom">Press SpaceBar To Push</Label>
+                        <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="30">Press SpaceBar To Push</Label>
                 </Panel>  
-                <TextBlock Name="GameOverScreen" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           TextAlignment="Center" FontSize="150" Width="10000" Height="200" Foreground="Red"
-                           Background="Black" IsVisible="False">
-                        Game Over
-                </TextBlock>
+                <StackPanel Name="GameOverScreen" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False">
+                        <TextBlock  FontSize="150" Width="10000" Height="200" Foreground="Red"
+                                   Background="Black" TextAlignment="Center">
+                                Game Over
+                        </TextBlock>
+                        <Button HorizontalAlignment="Center" FontSize="20" Click="RetryButton_OnClick">
+                                Retry
+                        </Button>
+                         <Canvas>
+                                 <Image Source=""></Image>
+                         </Canvas>       
+                </StackPanel>
+                
         </Panel>
         
    

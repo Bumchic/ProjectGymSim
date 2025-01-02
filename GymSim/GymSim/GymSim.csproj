@@ -32,5 +32,6 @@
             Update="res/app.ico">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Folder Include="Save\\**"/>
 </ItemGroup>
 </Project>
