@@ -3,9 +3,9 @@
         x:Class="ProjectGymSim.SelectDifficulty.Window1"
         Title="Select Difficulty" Width="400" Height="400">
     <Window.Background>
-        <ImageBrush Source="avares://GymSim/res/blackngreen.jpg" Stretch="UniformToFill" />
+        <ImageBrush Source="avares://GymSim/res/darkgreen.jpg" Stretch="UniformToFill" />
     </Window.Background>
-    <Grid Background="#121212">
+    <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
             <TextBlock Text="Game Mode" FontWeight="Bold" FontSize="32" Foreground="#1DB954"
                        HorizontalAlignment="Center"/>
