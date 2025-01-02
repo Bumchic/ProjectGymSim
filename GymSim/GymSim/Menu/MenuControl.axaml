@@ -6,6 +6,9 @@
         x:Class="ProjectGymSim.Menu.MenuControl"
         Title="MainMenu"
         KeyDown="OnKeyDown">
+    <Window.Background>
+        <ImageBrush Source="avares://GymSim/res/MenuGym.jpg" Stretch="UniformToFill" />
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/> 
