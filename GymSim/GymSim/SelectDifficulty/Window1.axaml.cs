@@ -12,7 +12,7 @@ public partial class Window1 : Window
     {
         InitializeComponent();
         Icon = new WindowIcon("res/app.ico");
-        // Gán sự kiện Click cho các nút
+        
         EasyButton.Click += EasyButton_Click;
         NormalButton.Click += NormalButton_Click;
         HardButton.Click += HardButton_Click;
