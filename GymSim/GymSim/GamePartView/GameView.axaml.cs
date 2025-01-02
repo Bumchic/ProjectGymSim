@@ -90,6 +90,8 @@ public partial class GameView : Window
             
         }
     }
+
+    private int PushStrength;
     public GameView()
     {
         InitializeComponent();
@@ -136,7 +138,7 @@ public partial class GameView : Window
             while (true)
             {
                 Task.Delay(100).Wait();
-                Strength += 1;
+                Strength += 2;
                 dispatcher.Invoke(() =>
                 {
                     this.StrengthCounter.Text = $"Strength:{Strength}";
@@ -151,13 +153,18 @@ public partial class GameView : Window
         {
             while (Progress > LowerLim)
             {
+                if (!liftReset)
+                {
+                    PushStrength = Math.Clamp(Time - Math.Abs(Strength), 0, Weight);
+                }
                 Progress--;
                 dispatcher.Invoke(() =>
                 {
                     GameFrame[Progress + 1].IsVisible = false;
                     GameFrame[Progress].IsVisible = true;
                 });
-                Task.Delay(Math.Clamp(Time - Math.Abs(Strength), 0, Weight)).Wait();
+                Console.WriteLine(PushStrength);
+                Task.Delay(PushStrength).Wait();
             }
             liftStarted = false;
             liftReset = false;
@@ -175,14 +182,21 @@ public partial class GameView : Window
         {
             return;
         }
+
+        
         Progress += 1;
-        Strength -= 3;
+        Strength -= 10;
+        if (strength < -weight)
+        {
+            strength = -weight;
+        }
         GameFrame[Progress - 1].IsVisible = false;
         GameFrame[Progress].IsVisible = true;
         if (Progress == UpperLim - 1)
         {
             RepCount++;
             Time = 0;
+            PushStrength = 20;
             this.RepCounter.Text = $"Rep:{RepCount}";
             liftReset = true;
         }
