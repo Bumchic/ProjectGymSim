@@ -30,11 +30,13 @@
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="10">
             <TextBlock Text="Welcome to Gym Sim!" 
-                       FontSize="24" 
+                       FontSize="42" 
+                       Foreground="Black"
                        FontWeight="Bold" 
                        HorizontalAlignment="Center"/>
             <TextBlock Text="Press any key to continue" 
-                       FontSize="20" 
+                       FontSize="24" 
+                       Foreground="Black"
                        HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
