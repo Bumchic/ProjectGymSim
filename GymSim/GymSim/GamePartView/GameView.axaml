@@ -6,15 +6,24 @@
         x:Class="ProjectGymSim.GamePartView.GameView"
         Title="GameView" KeyDown="SpaceButton_OnKeyDown"
         Background="Aqua">
-
-    <Panel Name="ThisPanel">
-        <StackPanel>
-            <TextBlock Name="RepCounter" TextWrapping="Wrap" FontSize="50">
-                Rep:0
-            </TextBlock>
-            <TextBlock Name="StrengthCounter" TextWrapping="Wrap" FontSize="50">
-                Strength:100
-            </TextBlock>
-        </StackPanel>
-    </Panel>
+        <Panel>
+                <Panel Name="ThisPanel">
+                        <StackPanel>
+                                <TextBlock Name="RepCounter" TextWrapping="Wrap" FontSize="50">
+                                        Rep:0
+                                </TextBlock>
+                                <TextBlock Name="StrengthCounter" TextWrapping="Wrap" FontSize="50">
+                                        Strength:100
+                                </TextBlock>
+                        </StackPanel>
+                        
+                </Panel>  
+                <TextBlock Name="GameOverScreen" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" FontSize="150" Width="10000" Height="200" Foreground="Red"
+                           Background="Black" IsVisible="False">
+                        Game Over
+                </TextBlock>
+        </Panel>
+        
+   
 </Window>
